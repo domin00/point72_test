@@ -13,6 +13,6 @@ Function:
 In order for the Web Application to be "live" the main.py file needs to be executed.
 
 This is done by navigating with the command line to the point72_test folder and executing the main.py file in the python3 environment.
-'''
+```
 $ python3 main.py
-'''
+```
