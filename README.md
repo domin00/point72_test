@@ -7,6 +7,11 @@ Function:
 - admins can update and deleter users in the database
 - both types of users can see the user database and filter by Age, Name, E-Mail, and Country
 
+library requirements:
+- flask (1.1.1)
+- sqlite3 (2.6.0)
+
+
 
 ### Running the Web App "Server":
 
