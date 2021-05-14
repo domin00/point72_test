@@ -19,8 +19,24 @@ c.execute('''CREATE TABLE IF NOT EXISTS users
               role TEXT)
               ''')
 
+# populate DB with list of users for simplicity
+try:
+    sql = ("INSERT INTO users (first_name, last_name, email, password, age, country, role) VALUES (?, ?, ?, ?, ?, ?, ?)")
+    c.execute(sql,('Adam', "Joe", "adam_joe@gmail.com", '1234', '14', 'Germany', 'regular'))
+    c.execute(sql,('John', "Joe", "john_joe@gmail.com", '1234', '19', 'Germany', 'regular'))
+    c.execute(sql,('Jenny', "Foster", "jenny_f@gmail.com", '1234', '32', 'Sweden', 'regular'))
+    c.execute(sql,('Fabio', "Pesci", "pescif@gmail.com", '1234', '22', 'Italy', 'regular'))
+    c.execute(sql,('Jamie', "Reynolds", "reynolds@gmail.com", '1234', '42', 'USA', 'regular'))
+    c.execute(sql,('Hulk', "Hogan", "hulk@yahoo.com", '1234', '58', 'USA', 'regular'))
+    c.execute(sql,('Daniel', "Cormier", "daniel_cormier@ufc.com", '1234', '42', 'USA', 'regular'))
+    c.execute(sql,('Khabib', "Nurmagedov", "khabib@ufc.com", '1234', '32', 'Russia', 'regular'))
+    c.execute(sql,('Charles', "Babbage", "charlie@gmail.com", '1234', '79', 'England', 'regular'))
+    c.execute(sql,('Steve', "Jobs", "jobs@apple.com", '1234', '56', 'USA', 'regular'))
+    c.execute(sql,('Bill', "Gates", "gates@microsoft.com", '1234', '65', 'USA', 'regular'))
+    c.execute(sql,('Alan', "Turing", "the_machine@turing.com", '1234', '42', 'England', 'regular'))
+except:
+    print("Table already has been populated with these values.")
 conn.commit()
-print("SQLite table created")
 c.close()
 
 
@@ -101,7 +117,6 @@ def home(user_name, user_role):
         if "age_button" in request.form:
             age_from = request.form.get('age_from')
             age_to = request.form.get('age_to')
-            print(age_from)
             c.execute('SELECT * FROM users WHERE age BETWEEN ? and ?', (age_from, age_to))
             data = [dict(
              id = row[0],
@@ -111,9 +126,6 @@ def home(user_name, user_role):
              age = row[5],
              country = row[6]
             ) for row in c.fetchall()]
-            print(data)
-
-
 
             if user_role == 'admin':
                 return render_template("home_admin.html", user_name=user_name, user_role=user_role, data=data)
@@ -123,7 +135,6 @@ def home(user_name, user_role):
         # first name filter
         elif "first_button" in request.form:
             first_name_part = request.form.get('first_name_part')
-            print(first_name_part)
             c.execute('SELECT * FROM users WHERE first_name LIKE ?', ('%'+first_name_part+'%',))
             data = [dict(
              id = row[0],
@@ -205,7 +216,6 @@ def home(user_name, user_role):
         # response to delete button
         elif "delete_button" in request.form:
             row_id = request.form.get('row_value')
-            print(row_id)
             conn = sqlite3.connect('point72.db')
             c = conn.cursor()
             c.execute('DELETE FROM users WHERE rowid = ?;', (row_id,))
@@ -260,4 +270,4 @@ def edit(id, user_name, user_role):
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+    app.run(host="127.0.0.1", port=8080, debug=False)
