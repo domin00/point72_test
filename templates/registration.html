@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title> Registration Page </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Please Register</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="First Name" name="first_name" required> <br>
+        <input type="text" placeholder="Last Name" name="last_name" required> <br>
+        <input type="text" placeholder="E-mail" name="email" required> <br>
+        <input type="password" placeholder="Password" name="password" required> <br>
+        <input type="text" placeholder="Age" name="age" required> <br>
+        <input type="text" placeholder="Country" name="country" required> <br>
+        <input type="radio" name="type" value="admin"> Admin <br>
+        <input type="radio" name="type" value="regular"> Regular User <br>
+        <input class="btn btn-default" type="submit" value="Register">
+      </form>
+
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+  </body>
+</html>

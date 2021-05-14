@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title> Home Page </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <head>
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
+  </head>
+
+
+
+  <body>
+    <div class="container">
+
+      <form class="" action="" method="post">
+        <input type="submit" name="logout" value="Log Out.">
+      </form>
+
+      <h1> Hello, {{user_name}}.  </h1>
+      <h2> Here is a list of all the users in your database: </h2>
+      <form class="" action="" method="post" name="filter">
+          <input type="text" name="age_from" size="4" placeholder="From">
+          <input type="text" name="age_to" size="4" placeholder="To">
+          <input type="submit" name="age_button" value="Filter by Age">
+
+          <input type="text" name="first_name_part" size="12" placeholder="First Name">
+          <input type="submit" name="first_button" value="Filter by First Name">
+
+          <input type="text" name="last_name_part" size="12" placeholder="Last Name">
+          <input type="submit" name="last_button" value="Filter by Last Name">
+
+          <input type="text" name="country" size="12" placeholder="Country">
+          <input type="submit" name="country_button" value="Filter by Country">
+
+          <input type="text" name="e_mail" placeholder="E-Mail">
+          <input type="submit" name="email_button" value="Filter by E-Mail">
+      </form>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>E-Mail</th>
+          <th>Age</th>
+          <th>Country</th>
+        </tr>
+      {% for row in data %}
+        <tr>
+            <td> {{ row.id }} </td>
+            <td> {{ row.first_name }} </td>
+            <td> {{ row.last_name }} </td>
+            <td> {{ row.email }} </td>
+            <td> {{ row.age }} </td>
+            <td> {{ row.country }} </td>
+
+        </tr>
+      {% endfor %}
+      </table>
+
+      <br>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+  </body>
+</html>
