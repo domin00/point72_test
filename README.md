@@ -33,4 +33,9 @@ Can only be rendered after redirection from login page.
 Allows for registration of a new user, who will now be able to log in, as well as be available in the database of the web app.
 
 #### Home Page
+Main functionality of the Web App.
+Lists all users in the database.
+Depending on the privileges of the logged in users, different functionalities are available. If you're registered as a admin user, you can delete or updata user information in addition to the regular user privileges. Otherwise, if you're a regular user, you can only filter the user list by specific parameters.
+
+Filtering by Age range, Name, E-mail, Country is available.
 
