@@ -189,7 +189,7 @@ def home(user_name, user_role):
         # e-mail filter
         elif "email_button" in request.form:
             e_mail = request.form.get('e_mail')
-            c.execute('SELECT * FROM users WHERE email LIKE ?', ('%'+email+'%',))
+            c.execute('SELECT * FROM users WHERE email LIKE ?', ('%'+e_mail+'%',))
             data = [dict(
              id = row[0],
              first_name = row[1],
